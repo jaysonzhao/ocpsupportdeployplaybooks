@@ -1,0 +1,48 @@
+- hosts: dev
+  name: install corepanel
+  remote_user: root
+  tasks:
+    - name:  login ocp 
+      command: oc login --token=aPUTjSB33XcS2j5_A_TUF5yalZPSrwVyqd5X-LMIGZA --server=https://api.cluster-98dc.98dc.sandbox1537.opentlc.com:6443
+      register: result
+      notify: test
+    - name:  create project 
+      command: oc new-project corepanel
+      register: result  
+      notify: test
+    - name:  add seesion long-term account  
+      command: oc create serviceaccount robot
+      register: result    	  
+      notify: test
+    - name:  add serviceaccount acl
+      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:corepanel:robot
+      register: result
+      notify: test
+    - name:  import images
+      command: oc import-image chenshoumao/corepanel-s2i-is:1 --confirm --insecure
+      register: result
+      notify: test handlers
+    - name: del config file
+      command: rm -rf corepanel-template.json 	  
+    - name:  get catalog config file
+      command: wget https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/shoumao/Template/raw/master/corepanel-template.json 
+      register: result    
+      notify: test handlers
+    - name:  import catalog
+      command: oc create -f corepanel-template.json 
+      register: result     
+      notify: test handlers
+    - name:  source build
+      command: oc new-app --template=corepanel-template -p APPLICATION_NAME=corepanel-app -p APPLICATION_HOSTNAME=corepanelapp.console-openshift-console.apps.cluster-98dc.98dc.sandbox1537.opentlc.com  -p NAMESPACE=corepanel  -p SOURCE_REPOSITORY_URL=https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/corepanel.git  -p SOURCE_REPOSITORY_REF=dev1  -p MVN_PROFILE=dev 
+      register: result        
+      notify: test handlers
+    - name: del config file
+      command: rm -rf corepanel-template.json 
+    - name:  start build
+      command: oc start-build  corepanel-app
+      register: result      
+      notify: test handlers
+
+  handlers:                                          
+    - name: test 
+      command: oc delete project  corepanel

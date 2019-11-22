@@ -1,0 +1,16 @@
+- hosts: dev
+  name: install corepanel
+  roles:
+  - corepanel 
+  
+  
+- hosts: dev
+  name: install nexus
+  roles:
+  - nexus3
+ 
+ 
+- hosts: dev
+  name: install gogs
+  roles:
+  - gogs

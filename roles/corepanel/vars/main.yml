@@ -1,0 +1,9 @@
+    token: 5UB93Rzfg4UeVXcUUluTkbtP3WamxUwa2DBUka7Rfg8
+    serverurl: https://api.hzocp.sandbox801.opentlc.com:6443
+    catalogurl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/shoumao/Template/raw/master/corepanel-template.json
+    appname: corepanel-app
+    hosename: corepanelapp.console-openshift-console.apps.hzocp.sandbox801.opentlc.com
+    namespace: corepanel
+    giturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/corepanel.git
+    branch: dev1
+    profile: dev

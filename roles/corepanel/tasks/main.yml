@@ -1,0 +1,44 @@
+    - name:  login ocp 
+      command: oc login --token={{token}} --server={{serverurl}}   --insecure-skip-tls-verify
+      register: result
+      notify: test
+    - name:  create project 
+      command: oc new-project corepanel
+      register: result
+      notify: test
+    - name:  add seesion long-term account  
+      command: oc create serviceaccount robot
+      register: result
+      notify: test
+    - name:  add serviceaccount acl
+      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:corepanel:robot
+      register: result
+      notify: test
+    - name:  import images
+      command: oc import-image chenshoumao/corepanel-s2i-is:1 --confirm --insecure
+      register: result
+      notify: test
+    - name: del config file
+      command: rm -rf corepanel-template.json 
+      register: result
+      notify: test
+    - name:  get catalog config file
+      command: wget {{catalogurl}}
+      register: result
+      notify: test
+    - name:  import catalog
+      command: oc create -f corepanel-template.json 
+      register: result
+      notify: test
+    - name:  source build
+      command: oc new-app --template=corepanel-template -p  APPLICATION_NAME={{appname}} -p APPLICATION_HOSTNAME={{hosename}}  -p NAMESPACE={{namespace}}  -p SOURCE_REPOSITORY_URL={{giturl}}  -p SOURCE_REPOSITORY_REF={{branch}}  -p MVN_PROFILE={{profile}} 
+      register: result
+      notify: test
+    - name: del config file
+      command: rm -rf corepanel-template.json 
+      register: result
+      notify: test
+    - name:  start build
+      command: oc start-build  corepanel-app
+      register: result
+      notify: test

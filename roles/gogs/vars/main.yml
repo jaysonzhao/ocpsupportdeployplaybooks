@@ -1,0 +1,4 @@
+    token: aPUTjSB33XcS2j5_A_TUF5yalZPSrwVyqd5X-LMIGZA
+    loginurl: https://api.cluster-98dc.98dc.sandbox1537.opentlc.com:6443
+    configurl: https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-template.yaml 
+    route: gogs.console-openshift-console.apps.cluster-98dc.98dc.sandbox1537.opentlc.com

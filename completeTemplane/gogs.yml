@@ -1,0 +1,29 @@
+- hosts: dev
+  name: install nexus3
+  remote_user: root
+  tasks:
+    - name:  login ocp 
+      command: oc login --token=aPUTjSB33XcS2j5_A_TUF5yalZPSrwVyqd5X-LMIGZA  --server=https://api.cluster-98dc.98dc.sandbox1537.opentlc.com:6443
+      register: result
+      notify: gogshandlers
+    - name:  create project 
+      command: oc new-project gogscustom
+      register: result
+      notify: gogshandlers
+    - name: del config file
+      command: rm -rf gogs-template.yaml 
+    - name:  get  config file
+      command: wget https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-template.yaml 
+      register: result
+      notify: gogshandlers
+    - name:  oc new-app
+      command: oc new-app -f  gogs-template.yaml  --param=GOGS_VERSION=0.11.34  --param=HOSTNAME=gogs.console-openshift-console.apps.cluster-98dc.98dc.sandbox1537.opentlc.com   --param=SKIP_TLS_VERIFY=true
+      register: result
+      notify: gogshandlers
+    - name: del config file
+      command: rm -rf gogs-template.yaml 
+      
+  handlers:                                          
+    - name: gogshandlers
+      command: oc delete project  gogscustom
+      when: "result.stdout=='' " 

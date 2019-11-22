@@ -1,0 +1,32 @@
+    - name:  login ocp 
+      command: oc login --token={{token}}  --server={{serverurl}}
+      register: result  
+      notify: test
+    - name:  create project 
+      command: oc new-project nexus
+      register: result  
+      notify: test
+    - name:  add seesion long-term account  
+      command: oc create serviceaccount nexus
+      register: result    	  
+      notify: test
+    - name:  add serviceaccount acl
+      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:nexus:nexus
+      register: result
+      notify: test
+    - name: del config file
+      command: rm -rf nexus3-template.yaml
+    - name:  get  config file
+      command: wget {{catalogurl}}
+      register: result    	  
+      notify: test
+    - name:  oc create nexus3-template.yaml
+      command: oc create -f nexus3-template.yaml 
+      register: result    	  
+      notify: test
+    - name: del config file
+      command: rm -rf nexus3-template.yaml
+    - name:  oc new-app
+      command: oc new-app nexus3
+      register: result    	  
+      notify: test
