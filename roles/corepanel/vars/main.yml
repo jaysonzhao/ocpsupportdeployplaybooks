@@ -1,4 +1,4 @@
-    token: 5UB93Rzfg4UeVXcUUluTkbtP3WamxUwa2DBUka7Rfg8
+    token: 9IBxvlTi2-uVNpQHdbAhXyPlo9Pik0N77EvV1USi1TY
     serverurl: https://api.hzocp.sandbox801.opentlc.com:6443
     catalogurl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/shoumao/Template/raw/master/corepanel-template.json
     appname: corepanel-app
@@ -7,3 +7,5 @@
     giturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/corepanel.git
     branch: dev1
     profile: dev
+    user: admin
+    password: redhat

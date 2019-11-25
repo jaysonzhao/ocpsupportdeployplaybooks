@@ -3,7 +3,7 @@
   remote_user: root
   tasks:
     - name:  login ocp 
-      command: oc login --token=aPUTjSB33XcS2j5_A_TUF5yalZPSrwVyqd5X-LMIGZA --server=https://api.cluster-98dc.98dc.sandbox1537.opentlc.com:6443
+      command: oc login --token=9IBxvlTi2-uVNpQHdbAhXyPlo9Pik0N77EvV1USi1TY --server=https://api.hzocp.sandbox801.opentlc.com:6443
       register: result
       notify: test
     - name:  create project 
@@ -33,7 +33,7 @@
       register: result     
       notify: test handlers
     - name:  source build
-      command: oc new-app --template=corepanel-template -p APPLICATION_NAME=corepanel-app -p APPLICATION_HOSTNAME=corepanelapp.console-openshift-console.apps.cluster-98dc.98dc.sandbox1537.opentlc.com  -p NAMESPACE=corepanel  -p SOURCE_REPOSITORY_URL=https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/corepanel.git  -p SOURCE_REPOSITORY_REF=dev1  -p MVN_PROFILE=dev 
+      command: oc new-app --template=corepanel-template -p APPLICATION_NAME=corepanel-app  -p APPLICATION_HOSTNAME=corepanelapp.console-openshift-console.apps.cluster-98dc.98dc.sandbox1537.opentlc.com  -p NAMESPACE=corepanel -p SOURCE_REPOSITORY_URL=https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/corepanel.git -p SOURCE_REPOSITORY_REF=dev1 -p MVN_PROFILE=dev -p CURRENT_PROJECT=corepanel -p OPENSHIFT_URL=https://api.cluster-98dc.98dc.sandbox1537.opentlc.com:6443  -p OPENSHIFT_USER=admin  -p OPENSHIFT_PASSWORD=redhat
       register: result        
       notify: test handlers
     - name: del config file
@@ -44,5 +44,5 @@
       notify: test handlers
 
   handlers:                                          
-    - name: test 
+    - name: test handlers
       command: oc delete project  corepanel
