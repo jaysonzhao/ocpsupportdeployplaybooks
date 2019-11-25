@@ -31,7 +31,7 @@
       register: result
       notify: test
     - name:  source build
-      command: c new-app --template=corepanel-template -p  APPLICATION_NAME={{appname}} -p APPLICATION_HOSTNAME={{hosename}}  -p NAMESPACE={{namespace}}  -p SOURCE_REPOSITORY_URL={{giturl}}  -p SOURCE_REPOSITORY_REF={{branch}}  -p MVN_PROFILE={{profile}}   -p CURRENT_PROJECT=corepanel -p OPENSHIFT_URL={{serverurl}} -p OPENSHIFT_USER={{user}}  -p OPENSHIFT_PASSWORD={{password}}
+      command: oc new-app --template=corepanel-template -p  APPLICATION_NAME={{appname}} -p APPLICATION_HOSTNAME={{hosename}}  -p NAMESPACE={{namespace}}  -p SOURCE_REPOSITORY_URL={{giturl}}  -p SOURCE_REPOSITORY_REF={{branch}}  -p MVN_PROFILE={{profile}}   -p CURRENT_PROJECT=corepanel -p OPENSHIFT_URL={{serverurl}} -p OPENSHIFT_USER={{user}}  -p OPENSHIFT_PASSWORD={{password}}
       register: result
       notify: test
     - name: del config file
