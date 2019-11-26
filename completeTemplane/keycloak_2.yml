@@ -3,7 +3,7 @@
   remote_user: root
   tasks:
     - name:  login ocp 
-      command: oc login --token=9IBxvlTi2-uVNpQHdbAhXyPlo9Pik0N77EvV1USi1TY --server=https://api.hzocp.sandbox801.opentlc.com:6443
+      command: oc login --token=pn_7b6_jMi2gAJF4Q3dTcaOigigRoFdpq0XOM01W6oQ --server=https://api.hzocp.sandbox801.opentlc.com:6443
       register: result
       notify: test
     - name:  create project 
@@ -16,6 +16,8 @@
       command: oc new-app -f https://raw.githubusercontent.com/maslick/keycloak-docker/master/openshift-keycloak.yaml   -p KEYCLOAK_USER=admin  -p KEYCLOAK_PASSWORD=admin   -p NAMESPACE=keycloak1   -p HOSTNAME_HTTP=keycloak1.apps.hzocp.sandbox801.opentlc.com
     - name:  copy sql file 
       command: oc rsync 1.sql keycloak-db-1-bzzts:/var/lib/pgsql/data/userdata
+    - name:  Import data
+      command: oc rsh keycloak-db-1-bzzts
     - name:  Import data
       command: psql -U keycloak -d keycloakdb -f /var/lib/pgsql/data/userdata/1.sql
       
