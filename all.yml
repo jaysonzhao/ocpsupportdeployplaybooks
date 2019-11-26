@@ -14,3 +14,8 @@
   name: install gogs
   roles:
   - gogs
+  
+- hosts: dev
+  name: install keycloak
+  roles:
+  - keycloak

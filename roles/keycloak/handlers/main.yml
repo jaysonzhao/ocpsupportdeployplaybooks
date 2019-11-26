@@ -1,0 +1,3 @@
+    - name: test
+      command: oc delete project  keycloak
+      when: "result.stdout=='' "
