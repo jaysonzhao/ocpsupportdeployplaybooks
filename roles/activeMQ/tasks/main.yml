@@ -1,5 +1,5 @@
     - name:  login ocp 
-      command: oc login --token={{token}} --server={{serverurl}}\
+      command: oc login --token={{token}} --server={{serverurl}}
     - name:  create project 
       command: oc new-project activemq
     - name:  remove old file 
