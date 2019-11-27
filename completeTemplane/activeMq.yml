@@ -18,6 +18,8 @@
       command: wget https://raw.githubusercontent.com/natronq/openshift-activemq/master/openshift-template.yaml
     - name: create appliaction 
       command: oc process -f openshift-template.yaml | oc apply -f - 
+      register: result
+      notify: test
     - name:  remove old file 
       command: rm -rf openshift-template.yaml
       register: result
