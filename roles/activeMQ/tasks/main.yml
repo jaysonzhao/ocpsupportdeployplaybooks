@@ -1,0 +1,20 @@
+    - name:  login ocp 
+      command: oc login --token={{token}} --server={{serverurl}}
+      register: result
+      notify: test
+    - name:  create project 
+      command: oc new-project activemq
+      register: result
+      notify: test
+    - name:  remove old file 
+      command: rm -rf openshift-template.yaml
+      register: result
+      notify: test
+    - name: get  attr config
+      command: wget {{catalogurl}}
+    - name: create appliaction 
+      command: oc process -f openshift-template.yaml | oc apply -f - 
+    - name:  remove old file 
+      command: rm -rf openshift-template.yaml
+      register: result
+      notify: test

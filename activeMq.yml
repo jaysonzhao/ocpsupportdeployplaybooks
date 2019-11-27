@@ -1,0 +1,4 @@
+- hosts: dev
+  name: install activeMQ
+  roles:
+  - activeMQ

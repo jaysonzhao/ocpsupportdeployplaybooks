@@ -1,0 +1,3 @@
+    - name: test
+      command: oc delete project  activemq
+      when: "result.stdout=='' "
