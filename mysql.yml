@@ -1,0 +1,4 @@
+- hosts: dev
+  name: install mysql
+  roles:
+  - mysql
