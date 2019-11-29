@@ -19,3 +19,14 @@
   name: install keycloak
   roles:
   - keycloak
+  
+  
+- hosts: dev
+  name: install activeMQ
+  roles:
+  - activeMQ
+   
+- hosts: dev
+  name: install mysql5_6
+  roles:
+  - mysql56
