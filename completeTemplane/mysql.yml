@@ -5,25 +5,49 @@
     - name:  login ocp 
       command: oc login --token=aPUTjSB33XcS2j5_A_TUF5yalZPSrwVyqd5X-LMIGZA  --server=https://api.cluster-98dc.98dc.sandbox1537.opentlc.com:6443
       register: result
-      notify: gogshandlers
+      notify: mysqlhandlers
     - name:  create project 
-      command: oc new-project gogscustom
+      command: oc new-project mysqlcustom
       register: result
-      notify: gogshandlers
-    - name: del config file
-      command: rm -rf gogs-template.yaml 
-    - name:  get  config file
-      command: wget https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-template.yaml 
+      notify: mysqlhandlers
+    - name:  import image
+      command: oc import-image docker.io/mysql:5.7  --confirm --insecure
       register: result
-      notify: gogshandlers
+      notify: mysqlhandlers          
     - name:  oc new-app
-      command: oc new-app -f  gogs-template.yaml  --param=GOGS_VERSION=0.11.34  --param=HOSTNAME=gogs.console-openshift-console.apps.cluster-98dc.98dc.sandbox1537.opentlc.com   --param=SKIP_TLS_VERIFY=true
+      command: oc new-app -e MYSQL_USER=data -e MYSQL_PASSWORD=data -e MYSQL_DATABASE=data -e MYSQL_ROOT_PASSWORD=root  -e MYSQL_LOWER_CASE_TABLE_NAMES=1  docker.io/mysql:5.7
       register: result
-      notify: gogshandlers
+      notify: mysqlhandlers     
     - name: del config file
-      command: rm -rf gogs-template.yaml 
+      command: rm -rf nfs-pv*
+    - name:  get pv file
+      command: wget https://gitee.com/hzopen/installPlaybook/raw/master/PersistentVolumeClaimConfig/nfs-pv.yaml
+      register: result
+      notify: mysqlhandlers
+    - name:  get pvc file
+      command: wget https://gitee.com/hzopen/installPlaybook/raw/master/PersistentVolumeClaimConfig/nfs-pvc.yaml
+      register: result
+      notify: mysqlhandlers      
+    - name:  create pv
+      command: oc create -f nfs-pv.yaml
+      register: result
+      notify: mysqlhandlers
+    - name:  create pv
+      command: oc create -f nfs-pvc.yaml
+      register: result
+      notify: mysqlhandlers
+    - name: del config file
+      command: rm -rf nfs-pv*
+    - name:  remove  volume
+      command: oc  set volume dc/mysql --remove --name=mysql-volume-1
+      register: result
+      notify: mysqlhandlers
+    - name:  add  volume
+      command: oc  set  volume dc/mysql --add  --type=persistentVolumeClaim  --claim-name=db-mysql-data-1   --name=mysql-volume-2 --mount-path=/var/lib/mysql
+      register: result
+      notify: mysqlhandlers
       
   handlers:                                          
-    - name: gogshandlers
-      command: oc delete project  gogscustom
+    - name: mysqlhandlers
+      command: oc delete project  mysqlcustom
       when: "result.stdout=='' " 
