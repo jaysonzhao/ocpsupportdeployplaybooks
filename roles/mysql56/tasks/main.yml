@@ -7,6 +7,6 @@
     - name:  create mysqlsts
       command:  oc create -f  roles/mysql56/vars/mysqlYml/mysqlsts.yml
     - name:  create phpmyadmin-template.yaml
-      command:  oc create -f   roles/mysql56/vars/mysqlYml/phpmyadmin-template.yaml
+      command:  oc create -f   roles/mysql56/vars/phpmyadmin/phpmyadmin-template.yaml
     - name:  process phpmyadmin-template
-      command:  oc process phpmyadmin-template  | oc create -f -
+      shell:  oc process phpmyadmin-template  | oc create -f -
