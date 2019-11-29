@@ -3,10 +3,10 @@
     - name:  create project 
       command: oc new-project mysql
     - name:  create headlessmysql
-      command:  oc create -f   roles/mysql56/vars/mysqlYml/headlessmysql.yaml
+      command:  oc create -f   ../vars/mysqlYml/headlessmysql.yaml
     - name:  create mysqlsts
-      command:  oc create -f  roles/mysql56/vars/mysqlYml/mysqlsts.yaml
+      command:  oc create -f  ../vars/mysqlYml/mysqlsts.yaml
     - name:  create phpmyadmin-template.yaml
-      command:  oc create -f   roles/mysql56/vars/mysqlYml/phpmyadmin-template.yaml
+      command:  oc create -f   ../vars/mysqlYml/phpmyadmin-template.yaml
     - name:  process phpmyadmin-template
       command:  oc process phpmyadmin-template  | oc create -f -
