@@ -3,7 +3,7 @@
   remote_user: root
   tasks:
     - name:  login ocp 
-      command: oc login --token=aPUTjSB33XcS2j5_A_TUF5yalZPSrwVyqd5X-LMIGZA  --server=https://api.cluster-98dc.98dc.sandbox1537.opentlc.com:6443
+      command: oc login --token=VcB0GjgALr321SUrWPuzYm90tLKyOFE9NG-FpFJRtdA --server=https://api.hzocp.sandbox801.opentlc.com:6443
       register: result
       notify: mysqlhandlers
     - name:  create project 
