@@ -21,11 +21,11 @@
     - name: del config file
       command: rm -rf nfs-pv*
     - name:  get pv file
-      command: wget https://gitee.com/hzopen/installPlaybook/raw/master/PersistentVolumeClaimConfig/nfs-pv.yaml
+      command: wget https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/installPlaybook/raw/master/PersistentVolumeClaimConfig/nfs-pv.yaml
       register: result
       notify: mysqlhandlers
     - name:  get pvc file
-      command: wget https://gitee.com/hzopen/installPlaybook/raw/master/PersistentVolumeClaimConfig/nfs-pvc.yaml
+      command: wget https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/installPlaybook/raw/master/PersistentVolumeClaimConfig/nfs-pvc.yaml
       register: result
       notify: mysqlhandlers      
     - name:  create pv
