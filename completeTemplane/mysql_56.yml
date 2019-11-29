@@ -1,0 +1,16 @@
+- hosts: dev
+  name: install mysql
+  remote_user: root
+  tasks:
+    - name:  login ocp 
+      command: oc login --token=VcB0GjgALr321SUrWPuzYm90tLKyOFE9NG-FpFJRtdA --server=https://api.hzocp.sandbox801.opentlc.com:6443
+    - name:  create project 
+      command: oc new-project mysql
+    - name:  create headlessmysql
+      command:  oc create -f  ../roles/mysql56/vars/mysqlYml/headlessmysql.yaml
+    - name:  create mysqlsts
+      command:  oc create -f  ../roles/mysql56/vars/mysqlYml/mysqlsts.yaml
+    - name:  create phpmyadmin-template.yaml
+      command:  oc create -f   ../roles/mysql56/vars/mysqlYml/phpmyadmin-template.yaml
+    - name:  process phpmyadmin-template
+      command:  oc process phpmyadmin-template  | oc create -f -

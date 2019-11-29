@@ -19,11 +19,11 @@
       register: result
       notify: mysqlhandlers     
     - name:  create pv
-      command: oc create -f  ../roles/mysql/vars/PersistentVolumeClaimConfig/nfs-pv.yaml
+      command: oc create -f  ../roles/mysql57/vars/PersistentVolumeClaimConfig/nfs-pv.yaml
       register: result
       notify: mysqlhandlers
     - name:  create pv
-      command: oc create -f ../roles/mysql/vars/PersistentVolumeClaimConfig/nfs-pvc.yaml
+      command: oc create -f ../roles/mysql57/vars/PersistentVolumeClaimConfig/nfs-pvc.yaml
       register: result
       notify: mysqlhandlers
     - name:  remove  volume
