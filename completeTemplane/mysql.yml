@@ -1,5 +1,5 @@
 - hosts: dev
-  name: install nexus3
+  name: install mysqlcustom
   remote_user: root
   tasks:
     - name:  login ocp 
@@ -18,26 +18,14 @@
       command: oc new-app -e MYSQL_USER=data -e MYSQL_PASSWORD=data -e MYSQL_DATABASE=data -e MYSQL_ROOT_PASSWORD=root  -e MYSQL_LOWER_CASE_TABLE_NAMES=1  docker.io/mysql:5.7
       register: result
       notify: mysqlhandlers     
-    - name: del config file
-      command: rm -rf nfs-pv*
-    - name:  get pv file
-      command: wget https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/installPlaybook/raw/master/PersistentVolumeClaimConfig/nfs-pv.yaml
-      register: result
-      notify: mysqlhandlers
-    - name:  get pvc file
-      command: wget https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/installPlaybook/raw/master/PersistentVolumeClaimConfig/nfs-pvc.yaml
-      register: result
-      notify: mysqlhandlers      
     - name:  create pv
-      command: oc create -f nfs-pv.yaml
+      command: oc create -f ../PersistentVolumeClaimConfig/nfs-pv.yaml
       register: result
       notify: mysqlhandlers
     - name:  create pv
-      command: oc create -f nfs-pvc.yaml
+      command: oc create -f ../PersistentVolumeClaimConfig/nfs-pvc.yaml
       register: result
       notify: mysqlhandlers
-    - name: del config file
-      command: rm -rf nfs-pv*
     - name:  remove  volume
       command: oc  set volume dc/mysql --remove --name=mysql-volume-1
       register: result
