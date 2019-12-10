@@ -1,12 +1,22 @@
     - name:  login ocp 
-      command: oc login --token={{token}} --server={{loginurl}}
+      command: oc login --token={{token}}  --server={{loginurl}}  --insecure-skip-tls-verify
     - name:  create project 
-      command: oc new-project mysql
-    - name:  create headlessmysql
-      command:  oc create -f   roles/mysql56/vars/mysqlYml/headlessmysql.yml
+      command: oc new-project {{projectname}}
+      register: result
+      notify: test
+    - name: create headlessmysql
+      command: oc create -f   roles/mysql56/templates/mysqlYml/headlessmysql.yml
+      register: result
+      notify: test
     - name:  create mysqlsts
-      command:  oc create -f  roles/mysql56/vars/mysqlYml/mysqlsts.yml
-    - name:  create phpmyadmin-template.yaml
-      command:  oc create -f   roles/mysql56/vars/phpmyadmin/phpmyadmin-template.yaml
-    - name:  process phpmyadmin-template
-      shell:  oc process phpmyadmin-template  | oc create -f -
+      command: oc create -f  roles/mysql56/templates/mysqlYml/mysqlsts.yml
+      register: result
+      notify: test
+    - name: create phpmyadmin-template.yaml
+      command: oc create -f   roles/mysql56/templates/phpmyadmin/phpmyadmin-template.yaml
+      register: result
+      notify: test
+    - name: process phpmyadmin-template
+      shell: oc process phpmyadmin-template  | oc create -f -
+      register: result
+      notify: test

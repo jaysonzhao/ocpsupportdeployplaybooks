@@ -1,3 +1,3 @@
     - name: test
-      command: oc delete project  activemq
+      command:  oc delete dc openshift-activemq && oc delete services openshift-activemq && oc delete routes activemq && oc delete imagestreams openshift-activemq
       when: "result.stdout=='' "

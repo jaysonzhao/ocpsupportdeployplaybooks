@@ -1,44 +1,36 @@
     - name:  login ocp 
       command: oc login --token={{token}} --server={{serverurl}}   --insecure-skip-tls-verify
       register: result
-      notify: test
-    - name:  create project 
-      command: oc new-project corepanel
+      notify: remove
+    - name:  get project 
+      command: oc  project {{projectname}}
       register: result
-      notify: test
+      notify: remove
     - name:  add seesion long-term account  
       command: oc create serviceaccount robot
       register: result
-      notify: test
+      notify: remove
     - name:  add serviceaccount acl
-      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:corepanel:robot
+      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:{{projectname}}:robot
       register: result
-      notify: test
+      notify: remove
     - name:  import images
       command: oc import-image chenshoumao/corepanel-s2i-is:1 --confirm --insecure
       register: result
-      notify: test
-    - name: del config file
-      command: rm -rf corepanel-template.json 
-      register: result
-      notify: test
-    - name:  get catalog config file
-      command: wget {{catalogurl}}
-      register: result
-      notify: test
+      notify: remove
     - name:  import catalog
-      command: oc create -f corepanel-template.json 
+      command: oc create -f roles/corepanel/templates/corepanel-template.json 
       register: result
-      notify: test
+      notify: remove 
     - name:  source build
-      command: oc new-app --template=corepanel-template -p  APPLICATION_NAME={{appname}} -p APPLICATION_HOSTNAME={{hosename}}  -p NAMESPACE={{namespace}}  -p SOURCE_REPOSITORY_URL={{giturl}}  -p SOURCE_REPOSITORY_REF={{branch}}  -p MVN_PROFILE={{profile}}   -p CURRENT_PROJECT=corepanel -p OPENSHIFT_URL={{serverurl}} -p OPENSHIFT_USER={{user}}  -p OPENSHIFT_PASSWORD={{password}}
-      register: result
-      notify: test
-    - name: del config file
-      command: rm -rf corepanel-template.json 
-      register: result
-      notify: test
+      command: oc new-app --template=corepanel-template -p  APPLICATION_NAME={{appname}} -p APPLICATION_HOSTNAME={{hosename}}  -p NAMESPACE={{namespace}}  -p SOURCE_REPOSITORY_URL={{giturl}}  -p SOURCE_REPOSITORY_REF={{branch}}  -p MVN_PROFILE={{profile}}   -p CURRENT_PROJECT=corespaceapp -p OPENSHIFT_URL={{serverurl}} -p OPENSHIFT_USER={{user}}  -p OPENSHIFT_PASSWORD={{password}}
+      register: resulta
+      notify: remove
     - name:  start build
       command: oc start-build  corepanel-app
+      register: resulta
+      notify: remove
+    - name:  import springboot-s2i
+      command: oc create -f  roles/corepanel/templates/springboot-s2i.json
       register: result
-      notify: test
+      notify: remove

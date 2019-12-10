@@ -3,7 +3,7 @@
       register: result
       notify: test
     - name:  create project 
-      command: oc new-project keycloak
+      command: oc  project corespaceapp
       register: result
       notify: test
     - name:  add seesion long-term account  
@@ -11,10 +11,10 @@
       register: result
       notify: test
     - name:  add serviceaccount acl
-      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:keycloak:keycloak
+      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:corespaceapp:keycloak
       register: result
       notify: test
     - name: create POSTGRESQL 
-      command: oc new-app -f https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/postgresql-persistent-template.json  -p DATABASE_SERVICE_NAME={{svcName}}   -p POSTGRESQL_USER={{postgerUser}}   -p POSTGRESQL_PASSWORD={{postgerPwd}} -p POSTGRESQL_DATABASE={{database}}
+      command: oc new-app -f roles/keycloak/templates/postgresql-persistent-template.json  -p DATABASE_SERVICE_NAME={{svcName}}   -p POSTGRESQL_USER={{postgerUser}}   -p POSTGRESQL_PASSWORD={{postgerPwd}} -p POSTGRESQL_DATABASE={{database}}
     - name: create KEYCLOAK 
-      command: oc new-app -f https://raw.githubusercontent.com/maslick/keycloak-docker/master/openshift-keycloak.yaml   -p KEYCLOAK_USER={{keycloakUser}}  -p KEYCLOAK_PASSWORD={{keycloakPwd}}   -p NAMESPACE=keycloak   -p HOSTNAME_HTTP={{hostname}}
+      command: oc new-app -f roles/keycloak/templates/openshift-keycloak.yaml   -p KEYCLOAK_USER={{keycloakUser}}  -p KEYCLOAK_PASSWORD={{keycloakPwd}}   -p NAMESPACE=keycloak   -p HOSTNAME_HTTP={{hostname}}

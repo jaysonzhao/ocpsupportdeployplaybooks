@@ -1,9 +1,9 @@
-    token: 9IBxvlTi2-uVNpQHdbAhXyPlo9Pik0N77EvV1USi1TY
-    serverurl: https://api.hzocp.sandbox801.opentlc.com:6443
+    token: WZDLWAjd9Im5Qwu8NUbumbjXgaxm-7aJA3X9tEDlUg0
+    serverurl: https://api.hzocp.sandbox1661.opentlc.com:6443
     svcName: keycloak-db
     postgerUser: keycloak
     postgerPwd: keycloak
     database: keycloakdb
     keycloakUser: admin
     keycloakPwd: admin
-    hostname: keycloak.apps.hzocp.sandbox801.opentlc.com
+    hostname: sso-keycloak.apps.hzocp.sandbox801.opentlc.com

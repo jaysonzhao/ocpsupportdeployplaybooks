@@ -1,12 +1,6 @@
     - name:  login ocp 
-      command: oc login --token={{token}} --server={{serverurl}}
+      command: oc login --token={{token}} --server={{loginurl}}
     - name:  create project 
-      command: oc new-project activemq
-    - name:  remove old file 
-      command: rm -rf openshift-template.yaml
-    - name: get  attr config
-      command: wget {{catalogurl}}
+      command: oc project {{projectname}}
     - name: create appliaction 
-      shell: oc process -f openshift-template.yaml | oc apply -f - 
-    - name:  remove old file 
-      command: rm -rf openshift-template.yaml
+      shell: oc process -f roles/activeMQ/templates/openshift-template.yaml | oc apply -f - 

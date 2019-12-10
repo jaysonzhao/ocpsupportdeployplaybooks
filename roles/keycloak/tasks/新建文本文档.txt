@@ -1,0 +1,2 @@
+https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/postgresql-persistent-template.json
+https://raw.githubusercontent.com/maslick/keycloak-docker/master/openshift-keycloak.yaml

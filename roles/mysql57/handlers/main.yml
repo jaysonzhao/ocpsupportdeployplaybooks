@@ -1,3 +1,0 @@
-    - name: test 
-      command: oc delete project  mysqlcustom
-      when: "result.stdout=='' " 

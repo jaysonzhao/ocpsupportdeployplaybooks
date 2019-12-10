@@ -27,10 +27,6 @@ spec:
           value: admin
         - name: MYSQL_PASSWORD
           value: admin
-        - name: MYSQL_MAX_ALLOWED_PACKET
-          value: 20M
-        - name: MYSQL_LOWER_CASE_TABLE_NAMES
-          value: 1
            
         ports:
         - containerPort: 3306
