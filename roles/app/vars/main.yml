@@ -1,0 +1,12 @@
+    token: tJTP_Ef0jhOl0DNTIwiHdDNg4eJ9paR_044HFPVTyGI
+    serverurl: https://api.cluster-dd7c.dd7c.sandbox840.opentlc.com:6443
+    catalogurl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/shoumao/Template/raw/master/corepanel-template.json
+    appname: appbase-app
+    hosename: appbase.apps.cluster-dd7c.dd7c.sandbox840.opentlc.com
+    namespace: corespaceapp
+    giturl: https://github.com/mangguochang/isimapptest2.git
+    branch: master
+    profile: dev
+    user: admin
+    password: r3dh4t1!
+    projectname: corespaceapp 

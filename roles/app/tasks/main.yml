@@ -1,0 +1,24 @@
+    - name:  login ocp 
+      command: oc login --token={{token}} --server={{serverurl}}   --insecure-skip-tls-verify
+    - name:  get project 
+      command: oc  project {{projectname}}
+    - name:  add seesion long-term account  
+      command: oc create serviceaccount robotapp
+      ignore_errors: yes
+    - name:  add serviceaccount acl
+      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:{{projectname}}:robotapp
+      ignore_errors: yes
+    - name:  add project acl
+      command: oc adm policy add-scc-to-group anyuid system:serviceaccounts:{{projectname}}
+      ignore_errors: yes
+    - name:  import images
+      command: oc import-image qweas11/appbase:16 --confirm --insecure
+      ignore_errors: yes
+    - name:  import catalog
+      command: oc create -f roles/app/templates/appbase-template.json 
+      ignore_errors: yes
+    - name:  source build
+      command: oc new-app --template=appbase-template -p APPLICATION_NAME={{appname}} -p APPLICATION_HOSTNAME={{hosename}}  -p NAMESPACE={{projectname}} -p SOURCE_REPOSITORY_URL={{giturl}}  -p SOURCE_REPOSITORY_REF={{branch}} -p CURRENT_PROJECT={{projectname}}  -p OPENSHIFT_URL={{serverurl}} -p OPENSHIFT_USER={{user}}  -p OPENSHIFT_PASSWORD={{password}}
+      ignore_errors: yes
+    - name:  start build
+      command: oc start-build  {{appname}}
