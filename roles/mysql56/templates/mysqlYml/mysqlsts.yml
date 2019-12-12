@@ -27,6 +27,8 @@ spec:
           value: admin
         - name: MYSQL_PASSWORD
           value: admin
+        - name: MYSQL_LOWER_CASE_TABLE_NAMES
+          value: '1'
            
         ports:
         - containerPort: 3306

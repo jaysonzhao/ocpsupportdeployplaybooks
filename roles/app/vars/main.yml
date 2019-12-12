@@ -5,7 +5,7 @@
     hosename: appbase.apps.cluster-dd7c.dd7c.sandbox840.opentlc.com
     namespace: corespaceapp
     giturl: https://github.com/mangguochang/isimapptest2.git
-    branch: master
+    branch: deploy
     profile: dev
     user: admin
     password: r3dh4t1!
