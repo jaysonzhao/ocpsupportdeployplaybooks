@@ -36,6 +36,13 @@ spec:
         volumeMounts:
         - name: mysqlsts-data
           mountPath: /var/lib/mysql
+        - name: config-map
+          mountPath: /etc/mysql/conf.d
+    volumes:
+      - name: config-map
+        configMap:
+          name: mysql
+          
   volumeClaimTemplates:
   - metadata:
       name: mysqlsts-data
@@ -45,3 +52,12 @@ spec:
       resources:
         requests:
           storage: 3Gi
+  - metadata:
+      name: config-map
+    spec:
+      storageClassName: gp2
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 3Gi        
+          
