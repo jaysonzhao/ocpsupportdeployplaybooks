@@ -14,11 +14,11 @@ spec:
       labels:
         app: mysqlsts
     spec:
-       volumes:
-       - name: mysql-config
-         configMap:
-         name: mysql
-         defaultMode: 420
+      volumes:
+      - name: mysql-config
+        configMap:
+            name: mysql
+            defaultMode: 420
       terminationGracePeriodSeconds: 10
       containers:
       - name: mysqlsts

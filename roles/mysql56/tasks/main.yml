@@ -24,7 +24,3 @@
       shell: oc process phpmyadmin-template  | oc create -f -
       register: result
       notify: test
-    - name:  restart mysql
-      command:  oc delete pods mysqlsts-0 
-      register: result
-      notify: test
