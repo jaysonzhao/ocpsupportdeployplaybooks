@@ -14,6 +14,11 @@ spec:
       labels:
         app: mysqlsts
     spec:
+       volumes:
+       - name: mysql-config
+         configMap:
+         name: mysql
+         defaultMode: 420
       terminationGracePeriodSeconds: 10
       containers:
       - name: mysqlsts
@@ -36,12 +41,8 @@ spec:
         volumeMounts:
         - name: mysqlsts-data
           mountPath: /var/lib/mysql
-        - name: config-map
+        - name: mysql-config
           mountPath: /etc/mysql/conf.d
-    volumes:
-      - name: config-map
-        configMap:
-          name: mysql
           
   volumeClaimTemplates:
   - metadata:

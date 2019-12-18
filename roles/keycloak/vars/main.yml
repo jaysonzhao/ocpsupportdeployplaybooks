@@ -7,3 +7,4 @@
     keycloakUser: admin
     keycloakPwd: admin
     hostname: sso-keycloak.apps.hzocp.sandbox801.opentlc.com
+    projectname: corespaceapp

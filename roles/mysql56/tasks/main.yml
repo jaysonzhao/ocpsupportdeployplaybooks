@@ -12,6 +12,10 @@
       command: oc create -f  roles/mysql56/templates/mysqlYml/mysqlsts.yml
       register: result
       notify: test
+    - name:  create configmap
+      command: oc create -f  roles/mysql56/templates/mysqlYml/mysql-configmap.yml
+      register: result
+      notify: test
     - name: create phpmyadmin-template.yaml
       command: oc create -f   roles/mysql56/templates/phpmyadmin/phpmyadmin-template.yaml
       register: result
@@ -20,17 +24,6 @@
       shell: oc process phpmyadmin-template  | oc create -f -
       register: result
       notify: test
-    - name:  modfiy lower case table names 1111111
-      command: oc  get  pods   
-    - name:  modfiy lower case table names 
-      shell: oc rsync   roles/mysql56/meta/  mysqlsts-0:/etc/mysql/conf.d
-      ignore_errors: yes
-    - name:  modfiy lower case table names 
-      shell: oc rsync   roles/mysql56/meta/  mysqlsts-0:/etc/mysql/conf.d
-      ignore_errors: yes
-    - name:  modfiy lower case table names 
-      shell: oc rsync   roles/mysql56/meta/  mysqlsts-0:/etc/mysql/conf.d
-      ignore_errors: yes
     - name:  restart mysql
       command:  oc delete pods mysqlsts-0 
       register: result

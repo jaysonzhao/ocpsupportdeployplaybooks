@@ -3,7 +3,7 @@
       register: result
       notify: test
     - name:  create project 
-      command: oc  project corespaceapp
+      command: oc  project {{projectname}}
       register: result
       notify: test
     - name:  add seesion long-term account  
@@ -11,7 +11,7 @@
       register: result
       notify: test
     - name:  add serviceaccount acl
-      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:corespaceapp:keycloak
+      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:{{projectname}}:keycloak
       register: result
       notify: test
     - name: create POSTGRESQL 
