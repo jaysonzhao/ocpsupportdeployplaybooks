@@ -7,8 +7,6 @@
     - name:  add serviceaccount acl
       command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:{{projectname}}:nexus
     - name:  oc create nexus3-template.yaml
-      command: oc create -f roles/nexus3/templates/nexus3-template.yaml \
-    - name: del config file
-      command: rm -rf nexus3-template.yaml
+      command: oc create -f roles/nexus3/templates/nexus3-template.yaml
     - name:  oc new-app
       command: oc new-app nexus3
