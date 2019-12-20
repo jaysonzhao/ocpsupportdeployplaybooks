@@ -1,32 +1,43 @@
 - hosts: dev
-  name: install corepanel
-  roles:
-  - corepanel 
-  
-  
-- hosts: dev
   name: install nexus
+  vars_files: roles/config.yml
   roles:
   - nexus3
  
  
 - hosts: dev
   name: install gogs
+  vars_files: roles/config.yml
   roles:
   - gogs
   
 - hosts: dev
   name: install keycloak
+  vars_files: roles/config.yml
   roles:
   - keycloak
   
   
 - hosts: dev
   name: install activeMQ
+  vars_files: roles/config.yml
   roles:
   - activeMQ
    
 - hosts: dev
   name: install mysql5_6
+  vars_files: roles/config.yml
   roles:
   - mysql56
+  
+- hosts: dev
+  name: install corepanel
+  vars_files: roles/config.yml
+  roles:
+  - corepanel 
+  
+- hosts: dev
+  name: install app
+  vars_files: roles/config.yml
+  roles:
+  - app 

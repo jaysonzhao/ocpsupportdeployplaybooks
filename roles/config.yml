@@ -1,0 +1,28 @@
+    token: HhL99N3JzwWQjfvnPDz0Bqjyavo-qNCTu7G9hd8oiS4
+    loginurl: https://api.abocp.sandbox735.opentlc.com:6443
+    projectname: corespaceapp
+    namespace: corespaceapp
+    user: admin
+    password: redhat
+    
+    keycloaksvcName: keycloak-db
+    postgerUser: keycloak
+    postgerPwd: keycloak
+    database: keycloakdb
+    keycloakUser: admin
+    keycloakPwd: admin
+    keycloahostname: sso-keycloak.apps.hzocp.sandbox801.opentlc.com
+    
+    corepanelappname: corepanel-app
+    corepanelhosename: corepanel-corespaceapp.apps.hzocp.sandbox1661.opentlc.com
+    corepanelgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/corepanel.git
+    corepanelbranch: dev1
+    corepanelprofile: dev
+
+    appappname: appbase-app
+    apphosename: appbase.apps.cluster-dd7c.dd7c.sandbox840.opentlc.com
+    appgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/agileintegration
+    appbranch: deploy
+    appprofile: dev
+    
+    gogshosename: gogs.apps.hzocp.sandbox1661.opentlc.com

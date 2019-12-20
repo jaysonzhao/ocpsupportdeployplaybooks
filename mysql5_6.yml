@@ -1,4 +1,5 @@
 - hosts: dev
   name: install mysql56
+  vars_files: roles/config.yml
   roles:
   - mysql56

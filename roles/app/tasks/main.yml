@@ -1,5 +1,5 @@
     - name:  login ocp 
-      command: oc login --token={{token}} --server={{serverurl}}   --insecure-skip-tls-verify
+      command: oc login --token={{token}} --server={{loginurl}}   --insecure-skip-tls-verify
     - name:  get project 
       command: oc  project {{projectname}}
     - name:  add seesion long-term account  
@@ -18,7 +18,7 @@
       command: oc create -f roles/app/templates/appbase-template.json 
       ignore_errors: yes
     - name:  source build
-      command: oc new-app --template=appbase-template -p APPLICATION_NAME={{appname}} -p APPLICATION_HOSTNAME={{hosename}}  -p NAMESPACE={{projectname}} -p SOURCE_REPOSITORY_URL={{giturl}}  -p SOURCE_REPOSITORY_REF={{branch}} -p CURRENT_PROJECT={{projectname}}  -p OPENSHIFT_URL={{serverurl}} -p OPENSHIFT_USER={{user}}  -p OPENSHIFT_PASSWORD={{password}}
+      command: oc new-app --template=appbase-template -p APPLICATION_NAME={{appappname}} -p APPLICATION_HOSTNAME={{apphosename}}  -p NAMESPACE={{projectname}} -p SOURCE_REPOSITORY_URL={{appgiturl}}  -p SOURCE_REPOSITORY_REF={{appbranch}} -p CURRENT_PROJECT={{projectname}}  -p OPENSHIFT_URL={{loginurl}} -p OPENSHIFT_USER={{user}}  -p OPENSHIFT_PASSWORD={{password}} -p MVN_PROFILE={{appprofile}}
       ignore_errors: yes
     - name:  start build
-      command: oc start-build  {{appname}}
+      command: oc start-build  {{appappname}}

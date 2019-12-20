@@ -1,4 +1,5 @@
 - hosts: dev
   name: install gogs
+  vars_files: roles/config.yml
   roles:
   - gogs

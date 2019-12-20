@@ -1,20 +1,6 @@
     - name:  login ocp 
       command: oc login --token={{token}}  --server={{loginurl}}
-      register: result
-      notify: gogshandlers
     - name:  create project 
-      command: oc new-project gogscustom
-      register: result
-      notify: gogshandlers
-    - name: del config file
-      command: rm -rf gogs-template.yaml 
-    - name:  get  config file
-      command: wget {{configurl}}
-      register: result
-      notify: gogshandlers
+      command: oc  project {{projectname}}
     - name:  oc new-app
-      command: oc new-app -f  gogs-template.yaml  --param=GOGS_VERSION=0.11.34  --param=HOSTNAME={{route}}   --param=SKIP_TLS_VERIFY=true
-      register: result
-      notify: gogshandlers
-    - name: del config file
-      command: rm -rf gogs-template.yaml 
+      command: oc new-app -f  roles/gogs/templates/gogs-template.yaml  --param=GOGS_VERSION=0.11.34  --param=HOSTNAME={{gogshosename}}   --param=SKIP_TLS_VERIFY=true

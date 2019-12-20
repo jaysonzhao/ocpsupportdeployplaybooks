@@ -1,4 +1,5 @@
 - hosts: dev
   name: install app
+  vars_files: roles/config.yml
   roles:
   - app 

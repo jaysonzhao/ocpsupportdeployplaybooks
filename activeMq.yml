@@ -1,4 +1,5 @@
 - hosts: dev
   name: install activeMQ
+  vars_files: roles/config.yml
   roles:
   - activeMQ

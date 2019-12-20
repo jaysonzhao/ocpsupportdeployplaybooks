@@ -1,4 +1,5 @@
 - hosts: dev
   name: install nexus
+  vars_files: roles/config.yml
   roles:
   - nexus3

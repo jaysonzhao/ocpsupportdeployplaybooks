@@ -1,4 +1,5 @@
 - hosts: dev
   name: install corepanel
+  vars_files: roles/config.yml
   roles:
   - corepanel 

@@ -1,5 +1,5 @@
     - name:  login ocp 
-      command: oc login --token={{token}} --server={{serverurl}}   --insecure-skip-tls-verify
+      command: oc login --token={{token}} --server={{loginurl}}   --insecure-skip-tls-verify
       register: result
       notify: remove
     - name:  get project 
@@ -23,7 +23,7 @@
       register: result
       notify: remove 
     - name:  source build
-      command: oc new-app --template=corepanel-template -p  APPLICATION_NAME={{appname}} -p APPLICATION_HOSTNAME={{hosename}}  -p NAMESPACE={{namespace}}  -p SOURCE_REPOSITORY_URL={{giturl}}  -p SOURCE_REPOSITORY_REF={{branch}}  -p MVN_PROFILE={{profile}}   -p CURRENT_PROJECT=corespaceapp -p OPENSHIFT_URL={{serverurl}} -p OPENSHIFT_USER={{user}}  -p OPENSHIFT_PASSWORD={{password}}
+      command: oc new-app --template=corepanel-template -p  APPLICATION_NAME={{corepanelappname}} -p APPLICATION_HOSTNAME={{corepanelhosename}}  -p NAMESPACE={{namespace}}  -p SOURCE_REPOSITORY_URL={{corepanelgiturl}}  -p SOURCE_REPOSITORY_REF={{corepanelbranch}}  -p MVN_PROFILE={{corepanelprofile}}   -p CURRENT_PROJECT=corespaceapp -p OPENSHIFT_URL={{loginurl}} -p OPENSHIFT_USER={{user}}  -p OPENSHIFT_PASSWORD={{password}}
       register: resulta
       notify: remove
     - name:  start build
