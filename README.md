@@ -3,6 +3,7 @@
 
 
 
+```
 |-- camelLogsApp.yml   
 |-- hosts			    
 `-- roles
@@ -21,8 +22,33 @@
     |       `-- main.yml
     |-- config.yml
 
+```
 
+
+
+
+
+```
+
+|-- camelLogsApp.yml :执行脚本
+|-- hosts: ansible hosts目录
+|-- roles
+	|--role_name/：我们定义的role的名字
+		file/：用于存放copy或script等模块调用的函数
+		tasks/:用于定义各种task，此目录一定要有main.yml;其他文件需要main.yml包含调用
+		handlers：用于定义各种handlers，此目录一定要有main.yml;其他文件需要main.yml包含调用
+		vars:用于定义variables，此目录一定要有main.yml;其他文件需要main.yml包含调用
+		templates/：存储由template模块调用的模板文本；
+		meta/：定义当前角色的特殊设定及其依赖关系，此目录中至少应该有一个名为main.yml的文件；其它的文件需要由main.yml进行“包含”调用；
+		default/：此目录中至少应该有一个名为main.yml的文件，用于设定默认变量；
+	|-- config.yml ：统一配置文件
 	
+```
+
+
+
+
+
 	
 	
 
@@ -30,7 +56,7 @@
 |-- hosts: ansible hosts目录
 |-- roles
 	|--role_name/：我们定义的role的名字
-			file/：用于存放copy或script等模块调用的函数
+	  file/：用于存放copy或script等模块调用的函数
 			tasks/:用于定义各种task，此目录一定要有main.yml;其他文件需要main.yml包含调用
 			handlers：用于定义各种handlers，此目录一定要有main.yml;其他文件需要main.yml包含调用
 			vars:用于定义variables，此目录一定要有main.yml;其他文件需要main.yml包含调用
