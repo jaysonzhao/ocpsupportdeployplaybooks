@@ -1,6 +1,8 @@
 
 一、脚本的目录结构
 
+
+
 |-- camelLogsApp.yml   
 |-- hosts			    
 `-- roles
@@ -20,6 +22,9 @@
     |-- config.yml
 
 
+	
+	
+	
 
 |-- camelLogsApp.yml :执行脚本
 |-- hosts: ansible hosts目录
@@ -34,8 +39,15 @@
 			default/：此目录中至少应该有一个名为main.yml的文件，用于设定默认变量；
 	|-- config.yml ：统一配置文件
 	
+	
+	
+	
 
-二、脚本应用包含：activeMq、mysql5_6、keycloak、corepanel(中台应用)、gogs、nexus3、app(服务应用)、camelLogsApp(日志应用)
+二、脚本应用包含：
+		
+	activeMq、mysql5_6、keycloak、corepanel(中台应用)、gogs、nexus3、app(服务应用)、camelLogsApp(日志应用)
+	
+	
 
 三、执行安装脚本之前预先修改配置信息(config.yml内容说明)
 
