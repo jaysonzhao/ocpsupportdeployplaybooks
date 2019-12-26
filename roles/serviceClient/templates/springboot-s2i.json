@@ -1,0 +1,166 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  app: ${APPLICATION_NAME}
+  template: springboot-s2i
+message: |-
+  The following com.pactera.corepanel.service(s) have been created in your project: ${APPLICATION_NAME}, ${DATABASE_SERVICE_NAME}.
+
+  For more information about using this template, including OpenShift considerations, see https://github.com/openshift/dancer-ex/blob/master/README.md.
+metadata:
+  annotations:
+    description: SpringBoot 源码构建模板
+    iconClass: icon-perl
+    openshift.io/display-name: springboot-s2i
+    openshift.io/documentation-url: https://github.com/openshift/dancer-ex
+    openshift.io/long-description: This template defines resources needed to develop
+      a Dancer based application, including a build configuration, application deployment
+      configuration, and database deployment configuration.
+    openshift.io/provider-display-name: Red Hat, Inc.
+    openshift.io/support-url: https://access.redhat.com
+    tags: quickstart,perl,dancer
+    template.openshift.io/bindable: "false"
+  creationTimestamp: null
+  name: springboot-s2i
+objects:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      description: The web server's http port.
+    labels:
+      application: ${APPLICATION_NAME}
+    name: ${APPLICATION_NAME}
+  spec:
+    ports:
+    - port: 8080
+      targetPort: 8080
+    selector:
+      deploymentConfig: ${APPLICATION_NAME}
+- apiVersion: route.openshift.io/v1
+  id: ${APPLICATION_NAME}-http-route
+  kind: Route
+  metadata:
+    annotations:
+      description: Route for application's http com.pactera.corepanel.service.
+    labels:
+      application: ${APPLICATION_NAME}
+    name: ${APPLICATION_NAME}-http-route
+  spec:
+    host: ${APPLICATION_HOSTNAME}
+    to:
+      kind: Service
+      name: ${APPLICATION_NAME}
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    labels:
+      application: ${APPLICATION_NAME}
+    name: ${APPLICATION_NAME}
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      description: Defines how to build the application
+      template.alpha.openshift.io/wait-for-ready: "true"
+    name: ${APPLICATION_NAME}
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${APPLICATION_NAME}:latest
+    source:
+      git:
+        ref: ${SOURCE_REPOSITORY_REF}
+        uri: ${SOURCE_REPOSITORY_URL}
+      type: Git
+    strategy:
+      sourceStrategy:
+        env:
+        - name: COMPOSER_MIRROR
+          value: ${COMPOSER_MIRROR}
+        - name: MVN_PROFILE
+          value: ${MVN_PROFILE}
+        forcePull: true
+        from:
+          kind: DockerImage
+          name: docker.io/chenshoumao/springboot-s2i:1
+      type: Source
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    labels:
+      application: ${APPLICATION_NAME}
+    name: ${APPLICATION_NAME}
+  spec:
+    replicas: 1
+    selector:
+      deploymentConfig: ${APPLICATION_NAME}
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        labels:
+          application: ${APPLICATION_NAME}
+          deploymentConfig: ${APPLICATION_NAME}
+        name: ${APPLICATION_NAME}
+      spec:
+        containers:
+        - env:
+          - name: csm
+            value: ${COMPOSER_MIRROR}
+          image: ' '
+          imagePullPolicy: Always
+          name: ${APPLICATION_NAME}
+          ports:
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - /bin/bash
+              - -c
+              - curl http://localhost:8080
+          resources:
+            limits:
+              memory: ${MEMORY_LIMIT}
+    triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - ${APPLICATION_NAME}
+        from:
+          kind: ImageStream
+          name: ${APPLICATION_NAME}:latest
+      type: ImageChange
+parameters:
+- description: The name for the application.
+  displayName: Application Name
+  name: APPLICATION_NAME
+  required: true
+- description: 'Custom hostname for com.pactera.corepanel.service routes.  Leave blank
+    for default hostname, e.g.: ..'
+  displayName: Application Hostname
+  name: APPLICATION_HOSTNAME
+- description: The URL of the repository with your application source code.
+  displayName: Git Repository URL
+  name: SOURCE_REPOSITORY_URL
+  required: true
+  value: https://shoumao:5a2ad98b18d803d0e0595c8718ddb74f@gitee.com/shoumao/SpringBootDemo.git
+- description: Set this to a branch name, tag or other ref of your repository if you
+    are not using the default branch.
+  displayName: Git Reference
+  name: SOURCE_REPOSITORY_REF
+  value: dev1
+- description: Maximum amount of memory the container can use.
+  displayName: Memory Limit
+  name: MEMORY_LIMIT
+  required: true
+  value: 512Mi
+- description: nexus地址
+  displayName: COMPOSER_MIRROR
+  name: COMPOSER_MIRROR
+- description: maven profile文件分支
+  displayName: maven profile文件分支
+  name: MVN_PROFILE

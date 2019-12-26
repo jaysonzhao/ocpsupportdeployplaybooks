@@ -1,4 +1,4 @@
-    token: Zjyw1LZKVmIPQyngaYwZf2FipOYAhj8ILDFBTA_jBjk
+    token: OpkLyM6cGPVpEFtrwZuxlTedY0fWK7K7_wEMMKkwR9U 
     loginurl: https://api.abocp.sandbox735.opentlc.com:6443
     projectname: corespaceapp
     namespace: corespaceapp
@@ -33,3 +33,10 @@
     appcamelgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/camel-activemq.git
     appcamelbranch: deploy
     appcamelprofile: dev
+    
+    
+    serviceclientappname: serviceclient-app
+    serviceclienthosename: serviceclient.apps.abocp.sandbox735.opentlc.com
+    serviceclientgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/serviceClient.git
+    serviceclientbranch: deploy
+    serviceclientprofile: dev

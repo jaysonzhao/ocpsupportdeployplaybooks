@@ -1,0 +1,3 @@
+- name: remove
+  command: oc delete serviceaccount robotservclient   &&  oc delete template  serviceclient-template   &&  oc delete dc serviceclient-app && oc delete services serviceclient-app && oc delete routes serviceclient-app-http-route  && oc delete imagestreams serviceclient-app   && oc delete buildconfigs serviceclient-app
+  when: "result.stdout==''"
