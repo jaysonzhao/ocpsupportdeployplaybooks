@@ -1,0 +1,3 @@
+- name: remove
+  command: oc delete serviceaccount robotlog   &&  oc delete template  camellogsapp-template   &&  oc delete dc appcamel-app && oc delete services appcamel-app && oc delete routes appcamel-app-http-route  && oc delete imagestreams appcamel-app   && oc delete buildconfigs appcamel-app
+  when: "result.stdout==''"

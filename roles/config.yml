@@ -1,4 +1,4 @@
-    token: HhL99N3JzwWQjfvnPDz0Bqjyavo-qNCTu7G9hd8oiS4
+    token: Zjyw1LZKVmIPQyngaYwZf2FipOYAhj8ILDFBTA_jBjk
     loginurl: https://api.abocp.sandbox735.opentlc.com:6443
     projectname: corespaceapp
     namespace: corespaceapp
@@ -14,15 +14,22 @@
     keycloahostname: sso-keycloak.apps.hzocp.sandbox801.opentlc.com
     
     corepanelappname: corepanel-app
-    corepanelhosename: corepanel-corespaceapp.apps.hzocp.sandbox1661.opentlc.com
+    corepanelhosename: corepanel-corespaceapp.apps.abocp.sandbox735.opentlc.com
     corepanelgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/corepanel.git
     corepanelbranch: dev1
     corepanelprofile: dev
 
     appappname: appbase-app
-    apphosename: appbase.apps.cluster-dd7c.dd7c.sandbox840.opentlc.com
+    apphosename: appbase.apps.abocp.sandbox735.opentlc.com
     appgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/agileintegration
     appbranch: deploy
     appprofile: dev
     
-    gogshosename: gogs.apps.hzocp.sandbox1661.opentlc.com
+    gogshosename: gogs.apps.abocp.sandbox735.opentlc.com
+    
+    
+    appcamelappname: appcamel-app
+    appcamelhosename: appcamel.apps.abocp.sandbox735.opentlc.com
+    appcamelgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/camel-activemq.git
+    appcamelbranch: deploy
+    appcamelprofile: dev
