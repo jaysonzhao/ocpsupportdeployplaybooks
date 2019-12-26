@@ -96,12 +96,19 @@
 四、注意点：
 
 	在ocp安装corepanel、app等应用的前需要安预先安装基础应用，既：mysql、activeMq、keycloak、gogs、nexus3，所以在安装业务应用时需要基础环境
-	安装顺利为：mysql、activeMq、keycloak、gogs、nexus3、corepanel、app、camelLogsApp
+	安装顺序为：mysql、activeMq、keycloak、gogs、nexus3、corepanel、app、camelLogsApp
 
 五、执行安装命令：
+
+1、执行mysql安装脚本
 				              
 	ansible-playbook  \
         	-i hosts  \         指定hosts文件     
-	   corepanel.yml  \    		指定安装需要安装应用脚本 
+	     mysql5_6.yml \    	    指定安装需要安装应用脚本 
 	--force-handlers  
 	
+
+2、执行activeMq安装脚本
+
+    `ansible-playbook  -i hosts    activeMq.yml    --force-handlers  `
+
