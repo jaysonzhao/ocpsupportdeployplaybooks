@@ -1,0 +1,29 @@
+- hosts: dev
+  name: install isimplatfrom
+  remote_user: root
+  tasks:
+    - name:  login ocp
+      command: oc login --token=_2Uz9S0QZCPwhoc-oH0X6JXxee-FWpCy5CAzK4YwS_I --server=https://api.hzop.sandbox1212.opentlc.com:6443
+    - name:  create project
+      command: oc new-project hzopen
+      ignore_errors: yes
+    - name:  oc project
+      command: oc project hzopen
+      ignore_errors: yes
+    - name:  add seesion long-term account
+      command: oc create serviceaccount robot
+      ignore_errors: yes
+    - name:  add serviceaccount acl
+      command: oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:hzopen:robot
+      ignore_errors: yes
+    - name: new build
+      command: oc new-build --binary=true --name=isimplatform
+      ignore_errors: yes
+    - name:  start build
+      command: oc start-build isimplatform --from-dir=/opt/binary-build --follow
+    - name:  new app
+      command: oc new-app isimplatform
+      ignore_errors: yes
+    - name:  expose service
+      command: oc expose service isimplatform --name isimplatform --port=8080
+      ignore_errors: yes
