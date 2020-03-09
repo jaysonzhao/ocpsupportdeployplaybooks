@@ -1,0 +1,84 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: mysqlsts
+  namespace: myoptest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysqlsts
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mysqlsts
+    spec:
+      volumes:
+        - name: mysql-config
+          configMap:
+            name: mysql
+            defaultMode: 420
+      containers:
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: mysqlsts
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_DATABASE
+              value: openagiledb
+            - name: MYSQL_USER
+              value: admin
+            - name: MYSQL_PASSWORD
+              value: admin
+            - name: MYSQL_LOWER_CASE_TABLE_NAMES
+              value: '1'
+          ports:
+            - name: mysql
+              containerPort: 3306
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: mysqlsts-data
+              mountPath: /var/lib/mysql
+            - name: mysql-config
+              mountPath: /etc/mysql/conf.d
+          terminationMessagePolicy: File
+          image: 'mysql:5.6'
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 10
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  volumeClaimTemplates:
+    - metadata:
+        name: mysqlsts-data
+        creationTimestamp: null
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 3Gi
+        storageClassName: gp2
+        volumeMode: Filesystem
+    - metadata:
+        name: config-map
+        creationTimestamp: null
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 3Gi
+        storageClassName: gp2
+        volumeMode: Filesystem
+  serviceName: mysqlsts
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  revisionHistoryLimit: 10
+
