@@ -1,7 +1,7 @@
-    token: OpkLyM6cGPVpEFtrwZuxlTedY0fWK7K7_wEMMKkwR9U 
-    loginurl: https://api.abocp.sandbox735.opentlc.com:6443
-    projectname: corespaceapp
-    namespace: corespaceapp
+    token: glcZHpT5lxOKwmnoCo5CMN_w7G7MbzjW0BHpOVtBoX4 
+    loginurl: https://api.ocptest.sandbox1899.opentlc.com:6443
+    projectname: myoptest 
+    namespace: myoptest
     user: admin
     password: redhat
     
@@ -11,32 +11,32 @@
     database: keycloakdb
     keycloakUser: admin
     keycloakPwd: admin
-    keycloahostname: sso-keycloak.apps.hzocp.sandbox801.opentlc.com
+    keycloahostname: sso-keycloak.apps.ocptest.sandbox1899.opentlc.com
     
     corepanelappname: corepanel-app
-    corepanelhosename: corepanel-corespaceapp.apps.abocp.sandbox735.opentlc.com
+    corepanelhosename: corepanel-myoptest.apps.ocptest.sandbox1899.opentlc.com
     corepanelgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/corepanel.git
     corepanelbranch: dev1
     corepanelprofile: dev
 
     appappname: appbase-app
-    apphosename: appbase.apps.abocp.sandbox735.opentlc.com
+    apphosename: appbase.apps.ocptest.sandbox1899.opentlc.com
     appgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/agileintegration
     appbranch: deploy
     appprofile: dev
     
-    gogshosename: gogs.apps.abocp.sandbox735.opentlc.com
+    gogshosename: gogs.apps.ocptest.sandbox1899.opentlc.com
     
     
     appcamelappname: appcamel-app
-    appcamelhosename: appcamel.apps.abocp.sandbox735.opentlc.com
+    appcamelhosename: appcamel.apps.ocptest.sandbox1899.opentlc.com
     appcamelgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/camel-activemq.git
     appcamelbranch: deploy
     appcamelprofile: dev
     
     
     serviceclientappname: serviceclient-app
-    serviceclienthosename: serviceclient.apps.abocp.sandbox735.opentlc.com
+    serviceclienthosename: serviceclient.apps.ocptest.sandbox1899.opentlc.com
     serviceclientgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/serviceClient.git
     serviceclientbranch: deploy
     serviceclientprofile: dev
