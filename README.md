@@ -78,7 +78,7 @@
 	
 四、注意点：
 
-	在ocp安装corepanel、app等应用的前需要安预先安装基础应用，既：mysql、activeMq、keycloak、gogs、nexus3，所以在安装业务应用时需要基础环境
+	在ocp安装应用前需要安预先安装基础应用，既：mysql、activeMq、keycloak、gogs、nexus3，所以在安装业务应用时需要基础环境
 	安装顺序为：mysql、activeMq、keycloak、gogs、nexus3
 
 五、执行安装命令：
