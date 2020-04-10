@@ -1,5 +1,0 @@
-- hosts: dev
-  name: install serviceClient
-  vars_files: roles/config.yml
-  roles:
-  - serviceClient 
