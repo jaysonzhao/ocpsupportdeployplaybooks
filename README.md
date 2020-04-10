@@ -50,7 +50,7 @@
 
 二、脚本应用包含：
 		
-	activeMq、mysql5_6、keycloak、corepanel(中台应用)、gogs、nexus3、app(服务应用)、camelLogsApp(日志应用)
+	activeMq、mysql5_6、keycloak、gogs、nexus3
 	
 	
 
@@ -71,32 +71,15 @@
 	keycloakPwd: admin				  																	(keycloak 密码)
 	keycloahostname: sso-keycloak.apps.hzocp.sandbox801.opentlc.com   									(keycloak 的路由)
 	
-	corepanelappname: corepanel-app																		(中台应用service name)
-	corepanelhosename: corepanel-corespaceapp.apps.abocp.sandbox735.opentlc.com   						(中台应用路由)
-	corepanelgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/corepanel.git    (中台应用git路径)
-	corepanelbranch: dev1     																			(中台应用git分支)
-	corepanelprofile: dev	  																			(中台应用mvn配置文件的分支地址)
 
-	appappname: appbase-app     																		(服务应用service name)
-	apphosename: appbase.apps.abocp.sandbox735.opentlc.com												(服务应用路由)
-	appgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/agileintegration		(服务应用git 路径)
-	appbranch: deploy      																				(服务应用git 分支)
-	appprofile: dev	  																			        (服务应用mvn配置文件的分支地址)
 	
 	gogshosename: gogs.apps.abocp.sandbox735.opentlc.com										        (gogs路由路径)			
 	
 	
-	appcamelappname: appcamel-app     																    (日志应用service name)
-	appcamelhosename: appcamel.apps.abocp.sandbox735.opentlc.com									    (日志应用路由)
-	appcamelgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/camel-activemq.git(日志应用git 路径)
-	appcamelbranch: deploy      																		(日志应用git 分支)
-	appcamelprofile: dev  																			    (日志应用mvn配置文件的分支地址)
-
-
 四、注意点：
 
 	在ocp安装corepanel、app等应用的前需要安预先安装基础应用，既：mysql、activeMq、keycloak、gogs、nexus3，所以在安装业务应用时需要基础环境
-	安装顺序为：mysql、activeMq、keycloak、gogs、nexus3、corepanel、app、camelLogsApp
+	安装顺序为：mysql、activeMq、keycloak、gogs、nexus3
 
 五、执行安装命令：
 

@@ -1,3 +1,0 @@
-- name: remove
-  command: oc delete serviceaccount robotapp  &&  oc delete dc appbase-app && oc delete services appbase-app && oc delete routes appbase-app-http-route  && oc delete imagestreams appbase-app   && oc delete buildconfigs appbase-app &&  oc delete template  appbase-template
-  when: "result.stdout==''"

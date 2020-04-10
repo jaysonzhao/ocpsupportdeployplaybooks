@@ -1,3 +1,0 @@
-- name: remove
-  command: oc delete serviceaccount robot  &&  oc delete dc corepanel-app && oc delete services corepanel-app && oc delete routes corepanel-app-http-route  && oc delete imagestreams corepanel-app && oc delete imagestreams corepanel-s2i-is && oc delete template springboot-s2i && oc delete buildconfigs corepanel-app &&  oc delete template  corepanel-template
-  when: "result.stdout==''"

@@ -13,30 +13,10 @@
     keycloakPwd: admin
     keycloahostname: sso-keycloak.apps.ocptest.sandbox1899.opentlc.com
     
-    corepanelappname: corepanel-app
-    corepanelhosename: corepanel-myoptest.apps.ocptest.sandbox1899.opentlc.com
-    corepanelgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/corepanel.git
-    corepanelbranch: dev1
-    corepanelprofile: dev
 
-    appappname: appbase-app
-    apphosename: appbase.apps.ocptest.sandbox1899.opentlc.com
-    appgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/agileintegration
-    appbranch: deploy
-    appprofile: dev
     
     gogshosename: gogs.apps.ocptest.sandbox1899.opentlc.com
     
     
-    appcamelappname: appcamel-app
-    appcamelhosename: appcamel.apps.ocptest.sandbox1899.opentlc.com
-    appcamelgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/camel-activemq.git
-    appcamelbranch: deploy
-    appcamelprofile: dev
     
     
-    serviceclientappname: serviceclient-app
-    serviceclienthosename: serviceclient.apps.ocptest.sandbox1899.opentlc.com
-    serviceclientgiturl: https://codeSay:c43ff1fbc88f538e2d49594f01717611@gitee.com/hzopen/serviceClient.git
-    serviceclientbranch: deploy
-    serviceclientprofile: dev
